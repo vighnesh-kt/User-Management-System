@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="login.css">
 </head>
+<title>Login</title>
 <body>
 	<div class="login">
 		<%
@@ -16,23 +16,49 @@
 		String name = (String) request.getAttribute("userName");
 		String email = (String) request.getAttribute("userEmail");
 		Long phone = (Long) request.getAttribute("userPhone");
-		
 		%>
 
 
 		<h2>Login</h2>
 		<%
-		if (message != null) {
+		//showing registeration successfull msg from register.java
+		String registerSuccess = (String) request.getAttribute("registerSuccess");
+		if (registerSuccess != null) {
 		%>
-		<h3 class="error"><%=message%></h1>
+		<h3 class="error"><%=registerSuccess%></h3>
 		<%
 		}
 		%>
+		
+		<% String alreadyRegistered=(String) request.getAttribute("alreadyRegistered");
+		if(alreadyRegistered!=null){ //showing alreadyregistered from register.java
+		%>
+		<h3 class="error"><%=alreadyRegistered %></h3>
 		<%
-		Object update= request.getAttribute("updated");
+		}
+		%>
+		
+		<% String invalidCredentials=(String) request.getAttribute("invalidCredentials");
+		if(invalidCredentials!=null){
+		%>
+		<h3 class="error"><%=invalidCredentials %></h3>
+		<%
+		}
+		%>
+
+		<%
+		Object update = request.getAttribute("updated");
 		if (update != null) {
 		%>
-		<h3 class="error"><%=update%></h1>
+		<h3 class="error"><%=update%></h3>
+		<%
+		}
+		%>
+		
+		<%Object recordDeleted= request.getAttribute("recordDeleted");
+		if(recordDeleted!=null){
+		%>
+		<h3 class="error"><%=recordDeleted %></h3>
 		<%
 		}
 		%>
@@ -40,14 +66,10 @@
 
 
 			<div class="input-group">
-
-				<label for="email">Email</label> <input type="email" id="email"
-					name="email" required>
-
+				<label for="email">Email</label> <input type="email" id="email" name="email" required>
 			</div>
 			<div class="input-group">
-				<label for="password">Password</label> <input type="password"
-					id="password" name="pwd" required>
+				<label for="password">Password</label> <input type="password" id="password" name="pwd" required>
 			</div>
 			<button type="submit">login</button>
 			<a href=register.jsp>Click here to register</a>

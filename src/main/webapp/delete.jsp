@@ -10,48 +10,56 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Delete Record</title>
 </head>
 <body>
 
-	<%
-	Connection conn = null;
+<%
+    HttpSession s = request.getSession(false); // Get the session
+    Connection conn = null;
+    PreparedStatement pstm = null; // Declare PreparedStatement here
 
-	try {
+    try {
+        if (session != null) {
+            conn = ConPool.giveConn();
+            Long pno = (Long) s.getAttribute("userPhone");
 
-		conn = ConPool.giveConn();
+            if (pno != null) {
+                String sql = "DELETE FROM register WHERE pnumber = ?";
+                pstm = conn.prepareStatement(sql);
+                pstm.setLong(1, pno);
 
-		Long pno = (Long) session.getAttribute("userPhone");
+                int rowsAffected = pstm.executeUpdate();
 
-		if (pno != null) {
-
-			String sql = "DELETE FROM register WHERE pno = ?";
-			PreparedStatement pstm = conn.prepareStatement(sql);
-			pstm.setLong(1, pno);
-
-			int rowsAffected = pstm.executeUpdate();
-
-			if (rowsAffected > 0) {
-		out.println("Record deleted successfully.");
-		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		rd.forward(request, response);
-
-			} else {
-		out.println("No record found with the given Phone number");
-			}
-		} else {
-			out.println("Phone Number is missing.");
-		}
-
-	} catch (SQLException e) {
-		e.printStackTrace();
-		out.println("Error occurred while deleting record.");
-	} finally {
-		if (conn != null) {
-			ConPool.submitConn(conn);
-
-		}
-	}
-	%>
+                if (rowsAffected > 0) {
+                    s.invalidate();
+                    RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+                    request.setAttribute("recordDeleted", "Record deleted successfully.");
+                    rd.forward(request, response);
+                } else {
+                    out.println("No record found with the given Phone number");
+                }
+            } else {
+                out.println("Phone Number is missing.");
+            }
+        } else {
+            out.println("Session is invalid or does not exist.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        out.println("Error occurred while deleting record.");
+    } finally {
+        if (pstm != null) {
+            try {
+                pstm.close(); // Close PreparedStatement
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (conn != null) {
+            ConPool.submitConn(conn); // Return connection to pool
+        }
+    }
+%>
 </body>
 </html>

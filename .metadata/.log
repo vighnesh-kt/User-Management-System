@@ -1,0 +1,26 @@
+!SESSION 2024-10-19 01:34:22.466 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.4
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/BaBa/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.jee.product -keyring /Users/BaBa/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-10-19 01:34:25.086
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-10-19 01:34:40.074
+!MESSAGE Logback config file: /Users/BaBa/eclipse-workspace/Projects/J2EE-Mock/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+!SESSION 2024-10-23 13:55:29.967 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.4
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/BaBa/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -product org.eclipse.epp.package.jee.product -keyring /Users/BaBa/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2024-10-23 13:55:32.822
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-10-23 13:55:58.943
+!MESSAGE Logback config file: /Users/BaBa/eclipse-workspace/Projects/J2EE-Mock/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml

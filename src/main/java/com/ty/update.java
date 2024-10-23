@@ -40,7 +40,7 @@ public class update extends HttpServlet {
 
 			conn = ConPool.giveConn();
 
-			String update = "UPDATE register SET sname=?, email=?, pwd=? WHERE pno=?";
+			String update = "UPDATE register SET user_name=?, email=?, pwd=? WHERE pnumber=?";
 			PreparedStatement pstm = conn.prepareStatement(update);
 			pstm.setString(1, name);
 			pstm.setString(2, email);
@@ -51,13 +51,13 @@ public class update extends HttpServlet {
 
 			if (rowsAffected > 0) {
 				RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
-				pw.print("<script>alert('Details Edited');</script>");
+				pw.print("<script>alert('Details Edited');</script>");//if use forward alert will not work
 				req.setAttribute("updated", "Details Updated");
 				rd.include(req, resp);
 			} else {
 				RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
 				pw.print("<script>alert('phone number does not exist');</script>");
-				rd.include(req, resp);
+				rd.forward(req, resp);
 			}
 
 		} catch (SQLException e) {

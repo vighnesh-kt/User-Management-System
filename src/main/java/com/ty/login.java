@@ -38,14 +38,14 @@ public class login extends HttpServlet {
 			ResultSet rs = pstm.executeQuery();
 			
 			if (rs.next()) {
-				session.setAttribute("userName", rs.getString(1));
-				session.setAttribute("userEmail", rs.getString(2));
-				session.setAttribute("userPass", rs.getString(3));
-				session.setAttribute("userPhone", rs.getLong(4));
+				session.setAttribute("userName", rs.getString("user_name"));
+				session.setAttribute("userEmail", rs.getString("email"));
+				session.setAttribute("userPass", rs.getString("pwd"));
+				session.setAttribute("userPhone", rs.getLong("pnumber"));
 				resp.sendRedirect("home.jsp");
 
 			} else {
-				req.setAttribute("message", "Invalid user credentials");
+				req.setAttribute("invalidCredentials", "Invalid user credentials");
 
 				RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
 				rd.forward(req, resp);

@@ -7,7 +7,7 @@ import java.util.List;
 public class ConPool {
 
 
-	private static String url = "jdbc:postgresql://localhost:5432/pjsp?user=postgres&password=root";
+	private static String url = "jdbc:postgresql://localhost:5432/user_management_system?user=postgres&password=root";
 	private static String driver ="org.postgresql.Driver";
 	private static final int poolSize = 4;
 	private static List<Connection> connPool = new ArrayList<>();

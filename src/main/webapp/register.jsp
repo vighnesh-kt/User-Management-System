@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Register</title>
 <link rel="stylesheet" type="text/css" href="register.css">
+<title>Register</title>
 </head>
 <body>
     <form action="register" method="post">
@@ -29,8 +29,7 @@
         <input type="password" id="pwd" name="pwd" required><br><br>
 
         <label for="pnumber">Phone:</label>
-        <input type="tel" id="pnumber"
-					name="pnumber" required>
+        <input type="tel" id="pnumber" name="pnumber" required>
         <br><br>
 
         <button type="submit" >Register</button>

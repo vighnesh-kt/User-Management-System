@@ -34,7 +34,7 @@ public class register extends HttpServlet {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                request.setAttribute("message", "Email already registered. Please log in.");
+                request.setAttribute("alreadyRegistered", "Email already registered. Please log in.");
                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                 rd.forward(request, response);
             } else {
@@ -47,7 +47,7 @@ public class register extends HttpServlet {
                 ps.close();
 
                 // Insert new user into the database
-                query = "INSERT INTO register (sname, email, pwd, pno) VALUES(?, ?, ?, ?)";
+                query = "INSERT INTO register (user_name, email, pwd, pnumber) VALUES(?, ?, ?, ?)";
                 ps = con.prepareStatement(query);
                 ps.setString(1, name);
                 ps.setString(2, email);
@@ -58,7 +58,9 @@ public class register extends HttpServlet {
                 ps.executeUpdate();
 
                 // Redirect to login page after successful registration
-                response.sendRedirect("login.jsp");
+                request.setAttribute("registerSuccess", "Registration successful! Please log in.");
+                RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+                rd.forward(request, response);
             }
         } catch (SQLException e) {
             e.printStackTrace();
